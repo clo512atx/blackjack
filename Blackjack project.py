@@ -10,11 +10,23 @@ dealerHand=[]
 
 #dealing cards function
 def dealCard(turn):
-    card=random.choice(deck)    #choice() method to to choose random element from list sequence of deck
+    card=random.choice(deck)    
     turn.append(card)
     deck.remove(card)
 
-'''select random hand from deck, on turn take card from deck, and remove card from deck'''
+"""
+dealCard(turn) is a function that takes a list (turn) as a parameter and deals a card from a deck of cards.
+
+The function first chooses a random card from the deck using the choice() method. 
+This random card is then appended to the list (turn) and removed from the deck.
+Finally, the function returns the list (turn) with the new card added.
+
+Parameters: 
+turn - list of cards already in the turn
+
+Returns: 
+turn - list of cards with the newly dealt card added
+"""
 
 #calculating the total of hands for player/dealer, defining value of cards
 def total(turn):
@@ -27,10 +39,29 @@ def total(turn):
             total += 10                       
         else:       #For 'A' card scenario
             if total > 11:
-                total += 1
+                total += 1 
             else:
                 total += 11 
     return total
+
+"""
+total(turn) is a function that takes in a list of cards and returns a total value based on the cards in the turn.
+
+Parameters:
+turn (list): a list of cards, which can be either numbers (1-10) or strings (J, Q, K, A)
+
+Returns:
+total (int): the total value of the cards in the turn
+
+The function begins by setting the total value to 0. It then iterates through the list of cards, adding the corresponding value to the total:
+- If the card is a number (1-10), the number is added to the total
+- If the card is 'J', 'Q', or 'K', the value 10 is added to the total
+- If the card is 'A', the value 1 or 11 is added to the total, depending on the current total:
+    - If the current total is > 11, 1 is added to the total
+    - If the current total is <= 11, 11 is added to the total
+
+Once all the cards in the turn have been evaluated, the total value is returned. 
+"""
 
 #winner
 def revealDealerHand():
@@ -39,10 +70,40 @@ def revealDealerHand():
     elif len(dealerHand) >2:
         return dealerHand[0], dealerHand[1]
 
+'''
+revealDealerHand()
+
+Description:
+This function reveals the dealer's hand in a game of blackjack. 
+
+Parameters:
+None
+
+Return Value:
+If the dealer's hand has two cards, the function returns the first card. 
+If the dealer's hand has more than two cards, the function returns the first two cards. 
+
+Example Usage:
+dealerHand = [3, 4, 7]
+revealDealerHand()
+# Returns (3, 4)
+
+'''
+
 #loops
 for _ in range(2) :
     dealCard(dealerHand)
     dealCard(playerHand)
+'''
+This function is used to deal cards to both the dealer and the player.
+
+The function begins by looping through the range 2, meaning it will run twice.
+
+In each iteration, the function calls the dealCard() function, passing in the dealerHand and playerHand variables. 
+The dealCard() function then deals a card to each hand, respectively.
+
+'''
+
 
 #testing
 #print(dealerHand)
